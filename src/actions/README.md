@@ -2,7 +2,8 @@ Action creators
 
 Action Creators should go there
 
-*Example component*
+_Example component_
+
 ```js
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';

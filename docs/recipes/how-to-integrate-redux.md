@@ -10,7 +10,7 @@ branch instead as it also includes Redux.
 1.  Go to `src/constants/index.js` and define action name there.
 
 2.  Go to `src/actions/` and create file with appropriate name. You can copy
-    `src/actions/runtime.action.js` as a template.
+    `src/actions/runtime.js` as a template.
 
 3.  If you need async actions, use [`redux-thunk`](https://github.com/gaearon/redux-thunk#readme).
     For inspiration on how to create async actions you can look at
@@ -23,7 +23,7 @@ branch instead as it also includes Redux.
 
 1.  Go to [`src/reducers/`](https://github.com/kriasoft/react-starter-kit/tree/feature/redux/src/reducers) and create new file there.
 
-    You can copy [`src/reducers/runtime.reducer.js`](https://github.com/kriasoft/react-starter-kit/tree/feature/redux/src/reducers/runtime.reducer.js) as a template.
+    You can copy [`src/reducers/runtime.js`](https://github.com/kriasoft/react-starter-kit/tree/feature/redux/src/reducers/runtime.js) as a template.
 
     * Do not forget to always return `state`.
     * Never mutate provided `state`.

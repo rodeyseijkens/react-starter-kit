@@ -13,7 +13,8 @@ import errorPageStyle from './components/templates/ErrorPage/ErrorPage.css';
 import createFetch from './createFetch';
 import localContentAPI from './localContentAPI';
 import router from './router';
-import assets from './assets.json'; // eslint-disable-line import/no-unresolved
+// import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
+import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import configureStore from './store/configureStore';
 import { setRuntimeVariable } from './actions/runtime.action';
 import config from './config';
@@ -126,11 +127,20 @@ app.get(routes.server, async (req, res, next) => {
       <App context={context}>{route.component}</App>,
     );
     data.styles = [{ id: 'css', cssText: [...css].join('') }];
-    data.scripts = [assets.vendor.js];
-    if (route.chunks) {
-      data.scripts.push(...route.chunks.map(chunk => assets[chunk].js));
-    }
-    data.scripts.push(assets.client.js);
+
+    const scripts = new Set();
+    const addChunk = chunk => {
+      if (chunks[chunk]) {
+        chunks[chunk].forEach(asset => scripts.add(asset));
+      } else if (__DEV__) {
+        throw new Error(`Chunk with name '${chunk}' cannot be found`);
+      }
+    };
+    addChunk('client');
+    if (route.chunk) addChunk(route.chunk);
+    if (route.chunks) route.chunks.forEach(addChunk);
+
+    data.scripts = Array.from(scripts);
     data.app = {
       baseUrl: config.baseUrl,
       apiUrl: config.api.url,

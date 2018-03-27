@@ -1,6 +1,7 @@
 ---
 title: Privacy Policy
 ---
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean consequat
 tortor fermentum mi fermentum dignissim. Nullam vel ipsum ut ligula elementum
 lobortis. Maecenas aliquam, massa laoreet lacinia pretium, nisi urna venenatis
@@ -36,7 +37,6 @@ hendrerit aliquam. Integer eu varius orci. Vestibulum ante ipsum primis in
 faucibus orci luctus et ultrices posuere cubilia Curae; Vestibulum ante ipsum
 primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut at mauris
 nibh. Suspendisse maximus ac eros at vestibulum.
-
 
 ## Fusce quis varius
 
