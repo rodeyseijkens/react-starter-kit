@@ -1,19 +1,39 @@
 const path = require('path');
+const { theme, styles } = require('./styleguide/styles');
 const pkg = require('../package.json');
 
-const reScript = /\.m?jsx?$/;
-const reStyle = /\.(css|less|scss|sss)$/;
-const reImage = /\.(bmp|gif|jpe?g|png|svg)$/;
-const staticAssetName = '[path][name].[ext]?[hash:8]';
+const ROOT_DIR = path.resolve(__dirname, '..');
+const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
+const SRC_DIR = resolvePath('src');
+
+const reScript = /\.(js|jsx|mjs)$/;
+const reStyle = /\.(css|less|styl|scss|sass|sss)$/;
+const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
 
 module.exports = {
+  require: ['@babel/polyfill'],
+  title: `${pkg.name} v${pkg.version}`,
+  editorConfig: {
+    theme: 'dracula', // future config
+  },
+  theme,
+  styles,
+  pagePerSection: true,
+  getComponentPathLine(componentPath) {
+    const name = path.basename(componentPath, '.js');
+    return `import { ${name} } from 'components';`;
+  },
+  // Override Styleguidist components
+  styleguideComponents: {
+    Wrapper: path.join(__dirname, 'styleguide/components/Wrapper/Wrapper.js'),
+  },
+  styleguideDir: path.join(__dirname, '../styleguide'),
   webpackConfig: {
     resolve: {
       // Allow absolute paths in imports, e.g. import Button from 'components/Button'
-      // Keep in sync with .flowconfig and .eslintrc
+      // Keep in sync with .flowconfig, .eslintrc, jest.config.js and styleguide.config.js
       modules: ['node_modules', 'src'],
     },
-
     module: {
       // Make missing exports an error instead of warning
       strictExportPresence: true,
@@ -22,135 +42,27 @@ module.exports = {
         // Rules for JS / JSX
         {
           test: reScript,
+          include: [SRC_DIR, resolvePath('tools')],
           loader: 'babel-loader',
-          options: {
-            // https://babeljs.io/docs/usage/options/
-            babelrc: false,
-            presets: [
-              // A Babel preset that can automatically determine the Babel plugins and polyfills
-              // https://github.com/babel/babel-preset-env
-              [
-                '@babel/preset-env',
-
-                {
-                  targets: {
-                    browsers: pkg.browserslist,
-                    forceAllTransforms: false,
-                  },
-                  modules: false,
-                  useBuiltIns: false,
-                  debug: false,
-                },
-              ],
-              // Experimental ECMAScript proposals
-              // https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-
-              '@babel/preset-stage-2',
-              // Flow
-              // https://github.com/babel/babel/tree/master/packages/babel-preset-flow
-              '@babel/preset-flow',
-              // JSX
-              // https://github.com/babel/babel/tree/master/packages/babel-preset-react
-              ['@babel/preset-react', { development: false }],
-            ],
-            plugins: [
-              '@babel/plugin-proposal-decorators',
-              // Treat React JSX elements as value types and hoist them to the highest scope
-              // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-constant-elements
-              '@babel/transform-react-constant-elements',
-              // Replaces the React.createElement function with one that is more optimized for production
-              // https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-inline-elements
-              '@babel/transform-react-inline-elements',
-              // Remove unnecessary React propTypes from the production build
-              // https://github.com/oliviertassinari/babel-plugin-transform-react-remove-prop-types
-              'transform-react-remove-prop-types',
-            ],
-          },
         },
-
-        // Rules for Style Sheets
         {
-          test: reStyle,
-          rules: [
-            // Convert CSS into JS module
-            {
-              issuer: { not: [reStyle] },
-              use: 'isomorphic-style-loader',
+          test: /\.(css|less|styl|scss|sass|sss)$/,
+          loader: 'style-loader!css-loader?modules',
+        },
+        {
+          test: /\.(css|less|styl|scss|sass|sss)$/,
+          loader: 'postcss-loader',
+          options: {
+            config: {
+              path: './tools/postcss.config.js',
             },
-
-            // Process external/third-party styles
-            {
-              exclude: path.resolve(__dirname, '../src'),
-              loader: 'css-loader',
-              options: {
-                discardComments: { removeAll: true },
-              },
-            },
-
-            // Process internal/project styles (from src folder)
-            {
-              include: path.resolve(__dirname, '../src'),
-              loader: 'css-loader',
-              options: {
-                // CSS Loader https://github.com/webpack/css-loader
-                importLoaders: 1,
-                // CSS Modules https://github.com/css-modules/css-modules
-                modules: true,
-                localIdentName: '[name]-[local]-[hash:base64:5]',
-                // CSS Nano http://cssnano.co/options/
-                minimize: true,
-                discardComments: { removeAll: true },
-              },
-            },
-
-            // Apply PostCSS plugins including autoprefixer
-            {
-              loader: 'postcss-loader',
-              options: {
-                config: {
-                  path: './tools/postcss.config.js',
-                },
-              },
-            },
-          ],
+          },
         },
 
         // Rules for images
         {
           test: reImage,
-          oneOf: [
-            // Inline lightweight images into CSS
-            {
-              issuer: reStyle,
-              oneOf: [
-                // Inline lightweight SVGs as UTF-8 encoded DataUrl string
-                {
-                  test: /\.svg$/,
-                  loader: 'svg-url-loader',
-                  options: {
-                    name: staticAssetName,
-                    limit: 4096, // 4kb
-                  },
-                },
-
-                // Inline lightweight images as Base64 encoded DataUrl string
-                {
-                  loader: 'url-loader',
-                  options: {
-                    name: staticAssetName,
-                    limit: 4096, // 4kb
-                  },
-                },
-              ],
-            },
-
-            // Or return public URL to image resource
-            {
-              loader: 'file-loader',
-              options: {
-                name: staticAssetName,
-              },
-            },
-          ],
+          loader: 'file-loader',
         },
 
         // Convert plain text into JS module
@@ -170,26 +82,10 @@ module.exports = {
         {
           exclude: [reScript, reStyle, reImage, /\.json$/, /\.txt$/, /\.md$/],
           loader: 'file-loader',
-          options: {
-            name: staticAssetName,
-          },
         },
       ],
     },
   },
-  getComponentPathLine(componentPath) {
-    const name = path.basename(componentPath, '.js');
-    const dir = path.dirname(componentPath).split('../src/')[1];
-    return `import ${name} from '${dir}';`;
-  },
-  styleguideComponents: {
-    Wrapper: path.join(__dirname, 'lib/styleguide/Wrapper'),
-  },
-  highlightTheme: 'dracula',
-  // editorConfig: {
-  //   theme: 'dracula', // future config
-  // },
-  styleguideDir: path.join(__dirname, '../styleguide'),
   sections: [
     {
       name: 'Atoms',

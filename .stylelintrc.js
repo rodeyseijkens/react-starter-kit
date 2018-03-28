@@ -38,6 +38,10 @@ module.exports = {
     // Opinionated rule, you can disable it if you want
     'string-quotes': 'single',
 
+    // Allowing selectors of lower specificity from coming after overriding selectors of higher specificity.
+    // This is for better nested css like :hover states etc.
+    'no-descending-specificity': null,
+
     // https://github.com/hudochenkov/stylelint-order/blob/master/rules/order/README.md
     'order/order': [
       'custom-properties',

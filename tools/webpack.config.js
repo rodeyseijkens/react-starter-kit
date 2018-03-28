@@ -6,7 +6,6 @@ import nodeExternals from 'webpack-node-externals';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import overrideRules from './lib/overrideRules';
 import pkg from '../package.json';
-import siteConfig from '../src/config';
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
@@ -21,9 +20,8 @@ const isAnalyze =
 const reScript = /\.(js|jsx|mjs)$/;
 const reStyle = /\.(css|less|styl|scss|sass|sss)$/;
 const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
-const staticAssetName = isDebug
-  ? '[path][name].[ext]?[hash:8]'
-  : '[hash:8].[ext]';
+const staticAssetName =
+  isVerbose || isDebug ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
 
 // CSS Nano options http://cssnano.co/
 const minimizeCssOptions = {
@@ -42,9 +40,7 @@ const config = {
 
   output: {
     path: resolvePath(BUILD_DIR, 'public/assets'),
-    publicPath: siteConfig.baseUrl
-      ? `${siteConfig.baseUrl}/assets/`
-      : `/assets/`,
+    publicPath: isDebug ? '/assets/' : 'assets/',
     pathinfo: isVerbose,
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDebug
@@ -57,7 +53,7 @@ const config = {
 
   resolve: {
     // Allow absolute paths in imports, e.g. import Button from 'components/Button'
-    // Keep in sync with .flowconfig and .eslintrc
+    // Keep in sync with .flowconfig, .eslintrc, jest.config.js and styleguide.config.js
     modules: ['node_modules', 'src'],
   },
 
@@ -147,9 +143,10 @@ const config = {
               sourceMap: isDebug,
               // CSS Modules https://github.com/css-modules/css-modules
               modules: true,
-              localIdentName: isDebug
-                ? '[name]-[local]-[hash:base64:5]'
-                : '[hash:base64:5]',
+              localIdentName:
+                isVerbose || isDebug
+                  ? '[name]-[local]-[hash:base64:5]'
+                  : '[hash:base64:5]',
               // CSS Nano http://cssnano.co/
               minimize: isDebug ? false : minimizeCssOptions,
             },
@@ -295,7 +292,7 @@ const clientConfig = {
       output: `${BUILD_DIR}/asset-manifest.json`,
       publicPath: true,
       writeToDisk: true,
-      customize: (key, value) => {
+      customize: ({ key, value }) => {
         // You can prevent adding items to the manifest by returning false.
         if (key.toLowerCase().endsWith('.map')) return false;
         return { key, value };

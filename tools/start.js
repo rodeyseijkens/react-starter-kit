@@ -1,4 +1,3 @@
-import path from 'path';
 import express from 'express';
 import browserSync from 'browser-sync';
 import webpack from 'webpack';
@@ -9,7 +8,6 @@ import webpackConfig from './webpack.config';
 import run, { format } from './run';
 import clean from './clean';
 import copy from './copy';
-import siteConfig from '../src/config';
 
 const isDebug = !process.argv.includes('--release');
 
@@ -61,7 +59,6 @@ async function start() {
   if (server) return server;
   server = express();
   server.use(errorOverlayMiddleware());
-  server.use(express.static(path.resolve(__dirname, '../public')));
 
   // Configure client-side hot module replacement
   const clientConfig = webpackConfig.find(config => config.name === 'client');
@@ -210,7 +207,6 @@ async function start() {
     browserSync.create().init(
       {
         // https://www.browsersync.io/docs/options
-        startPath: siteConfig.baseUrl,
         server: 'src/server.js',
         middleware: [server],
         open: !process.argv.includes('--silent'),

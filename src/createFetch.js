@@ -17,7 +17,7 @@ type Options = {
 function createFetch(fetch: Fetch, { apiUrl, cookie }: Options) {
   // NOTE: Tweak the default options to suite your application needs
   const defaults = {
-    method: 'POST', // handy with backends
+    method: 'GET',
     mode: apiUrl ? 'cors' : 'same-origin',
     credentials: apiUrl ? 'include' : 'same-origin',
     headers: {
