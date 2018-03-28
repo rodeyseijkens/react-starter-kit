@@ -11,7 +11,7 @@
   --switcher-dot-color: #fff;
   --switcher-active-dot-color: #f6fff7;
   --switcher-transition-duration: 150ms;
-  --switcher-label-font-family: initial;
+  --switcher-label-font-family: sans-serif;
   --switcher-label-font-size: 15px;
   --switcher-active-offset:
     calc(
