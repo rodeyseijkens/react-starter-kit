@@ -20,19 +20,10 @@ describe('<Link />', () => {
     children: ['Internal Link'],
   };
 
-  const wrapper = shallow(<Link {...props} />, {
-    context: {
-      baseUrl: '',
-    },
-  });
+  const wrapper = shallow(<Link {...props} />);
 
-  it('renders href without baseUrl correctly', () => {
+  it('renders href correctly', () => {
     expect(wrapper.find('a').prop('href')).toBe('/internal-link');
-  });
-
-  it('renders href with baseUrl correctly', () => {
-    wrapper.setContext({ baseUrl: '/base-url' });
-    expect(wrapper.find('a').prop('href')).toBe('/base-url/internal-link');
   });
 
   it('renders text correctly', () => {
@@ -87,7 +78,7 @@ describe('<Link />', () => {
 
     it('does push to history', () => {
       wrapper.find('a').simulate('click', mockEvent);
-      expect(history.push).toHaveBeenCalledWith('/base-url/internal-link');
+      expect(history.push).toHaveBeenCalledWith('/internal-link');
     });
   });
 });

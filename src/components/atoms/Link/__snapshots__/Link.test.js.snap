@@ -2,7 +2,7 @@
 
 exports[`<Link /> renders children correctly 1`] = `
 <a
-  href="/base-url/internal-link"
+  href="/internal-link"
   onClick={[Function]}
 >
   Internal Link

@@ -24,16 +24,11 @@ class Link extends React.Component {
     onClick: PropTypes.func,
   };
 
-  static contextTypes = {
-    baseUrl: PropTypes.string.isRequired,
-  };
-
   static defaultProps = {
     onClick: null,
   };
 
   handleClick = event => {
-    const { baseUrl } = this.context;
     const { to, onClick } = this.props;
 
     if (onClick) {
@@ -49,15 +44,14 @@ class Link extends React.Component {
     }
 
     event.preventDefault();
-    history.push(`${baseUrl}${to}`);
+    history.push(to);
   };
 
   render() {
-    const { baseUrl } = this.context;
     const { children, to, ...props } = this.props;
 
     return (
-      <a href={`${baseUrl}${to}`} {...props} onClick={this.handleClick}>
+      <a href={to} {...props} onClick={this.handleClick}>
         {children}
       </a>
     );
