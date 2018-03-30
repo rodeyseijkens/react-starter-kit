@@ -35,11 +35,7 @@ module.exports = {
       modules: ['node_modules', 'src'],
     },
     module: {
-      // Make missing exports an error instead of warning
-      strictExportPresence: true,
-
       rules: [
-        // Rules for JS / JSX
         {
           test: reScript,
           include: [SRC_DIR, resolvePath('tools')],
@@ -58,23 +54,17 @@ module.exports = {
             },
           },
         },
-
-        // Rules for images
         {
           test: reImage,
           loader: 'file-loader',
         },
-
-        // Convert plain text into JS module
+        {
+          test: /\.svg$/,
+          loader: 'url-loader',
+        },
         {
           test: /\.txt$/,
           loader: 'raw-loader',
-        },
-
-        // Convert Markdown into HTML
-        {
-          test: /\.md$/,
-          loader: path.resolve(__dirname, './lib/markdown-loader.js'),
         },
 
         // Return public URL for all assets unless explicitly excluded
@@ -88,16 +78,92 @@ module.exports = {
   },
   sections: [
     {
-      name: 'Atoms',
-      components: '../src/components/atoms/**/*.js',
+      name: 'Documentation',
+      sections: [
+        {
+          name: 'Getting Started',
+          content: '../docs/getting-started.md',
+        },
+        {
+          name: 'Configure text editors',
+          content: '../docs/how-to-configure-text-editors.md',
+        },
+        {
+          name: 'React style guide',
+          content: '../docs/react-style-guide.md',
+        },
+        {
+          name: 'How to fetch data',
+          content: '../docs/how-to-fetch-data.md',
+        },
+        {
+          name: 'Use the local content api',
+          content: '../docs/how-to-use-local-content-api.md',
+        },
+        {
+          name: 'Multilanguage',
+          content: '../docs/how-to-use-multilanguage.md',
+        },
+        {
+          name: 'Using Redux',
+          content: '../docs/how-to-use-redux.md',
+        },
+        {
+          name: 'Routing',
+          content: '../docs/how-to-use-routing.md',
+        },
+        {
+          name: 'Build & deploy',
+          content: '../docs/how-to-build-and-deploy.md',
+        },
+        {
+          name: 'Recipes',
+          sections: [
+            {
+              name: 'External social service',
+              content:
+                '../docs/recipes/how-to-integrate-external-social-service.md',
+            },
+            {
+              name: 'Integrate React-Intl',
+              content: '../docs/recipes/how-to-integrate-react-intl.md',
+            },
+            {
+              name: 'Integrate Redux',
+              content: '../docs/recipes/how-to-integrate-redux.md',
+            },
+          ],
+        },
+      ],
     },
     {
-      name: 'Molecules',
-      components: '../src/components/molecules/**/*.js',
-    },
-    {
-      name: 'Organisms',
-      components: '../src/components/organisms/**/*.js',
+      name: 'Components',
+      sections: [
+        {
+          name: 'Elements',
+          components: '../src/rsk-components/elements/*/**/*.js',
+        },
+        {
+          name: 'Collections',
+          components: '../src/rsk-components/collections/*/**/*.js',
+        },
+        {
+          name: 'Views',
+          components: '../src/rsk-components/views/*/**/*.js',
+        },
+        {
+          name: 'Modules',
+          components: '../src/rsk-components/modules/*/**/*.js',
+        },
+        {
+          name: 'Behaviors',
+          components: '../src/rsk-components/behaviors/*/**/*.js',
+        },
+        {
+          name: 'Addons',
+          components: '../src/rsk-components/addons/*/**/*.js',
+        },
+      ],
     },
   ],
 };
