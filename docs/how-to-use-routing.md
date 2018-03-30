@@ -1,5 +1,3 @@
-## How to Use Routing and Navigation
-
 Let's see how routing is implemented using [Universal Router](https://github.com/kriasoft/universal-router)
 
 First, you will need to implement the **list of application routes** in which each route can be
@@ -9,7 +7,7 @@ that can return anything - a string, a React component, etc. For example:
 
 #### `src/routes/index.js`
 
-```js
+```js static
 // The top-level (parent) route
 const routes = {
   path: '',
@@ -42,7 +40,7 @@ export default routes;
 
 #### `src/routes/home/index.js`
 
-```js
+```js static
 import React from 'react';
 import Home from '../../components/templates/Home';
 import Layout from '../../components/base/Layout';
@@ -72,7 +70,7 @@ and exports it as a singleton:
 
 #### `src/history.js`
 
-```js
+```js static
 import createBrowserHistory from 'history/createBrowserHistory';
 export default process.env.BROWSER && createBrowserHistory();
 ```
@@ -83,7 +81,7 @@ Second, we use this module in `client.js` to [pass it to our store](../src/clien
 Third, use the (`Link`) component to implement any router links. Routerlinks are resolved by
 routename that is specified in `../src/routes/index.js`. It can be used as follows:
 
-```jsx
+```js static
 // Route by name
 <Link to="/contact">Contact</Link>
 
@@ -91,10 +89,26 @@ routename that is specified in `../src/routes/index.js`. It can be used as follo
 <Link to="/about" >About</Link>
 ```
 
-## Specifing a baseUrl
+## Specifing a custom url structure with the cmsMiddleware
 
-If your app runs in a subdirectory e.g. `https://example.com/subdirectory` specify the subdiretory
-name prefixed with a `/` in the `process.env.BASE_URL` runtime variable
+If your app runs in a subdirectory e.g. `https://example.com/campaign` specify the subdirectory
+in the ../src/cmsMiddleware.js or use the default fetch function from the backend implementation to get the
+structure like that. The url structure is build up from the [ExpressJS spec](http://expressjs.com/en/api.html).
+
+```js static
+const siteInit = {
+  url: {
+    structure: '/:campaign/:lang',
+    options: {
+      lang: ['en-US', 'nl-NL'],
+    },
+  },
+};
+```
+
+The middleware by default tries to fill in the default first option when missing.
+All static content will also be served from that url structure /campaign/en-US,
+except when in development then /assets/ will be served from Webpack middleware.
 
 ### More about the Universal Router.
 

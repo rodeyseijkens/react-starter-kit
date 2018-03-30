@@ -1,5 +1,3 @@
-## How to Use the local content API
-
 With the local content API you can fetch files based on for example the route.
 The API will automatically try to fetch one of the following file types:
 
@@ -15,7 +13,7 @@ or you can find it in the `src/routes/generic/index.js`.
 In the generic route there is a example on how to load a markdown file using the LocalAPI
 and then putting it in the DefaultPage component
 
-```js
+```js static
 const resp = await fetch(`/api/content`, {
   method: `post`,
   headers: {

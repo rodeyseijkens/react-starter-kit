@@ -1,11 +1,11 @@
-## How to Integrate [React Intl](https://github.com/yahoo/react-intl#react-intl)
+### [React Intl](https://github.com/yahoo/react-intl#react-intl)
 
 1.  Merge `feature/react-intl` branch with git.
     Because react-intl integration is built on top of `feature/redux`, you'll also get all the features.
 
 2.  Adjust `INTL_REQUIRE_DESCRIPTIONS` constant in `tools/webpack.config.js` around line 17:
 
-    ```js
+    ```js static
     const INTL_REQUIRE_DESCRIPTIONS = true;
     ```
 
@@ -13,7 +13,7 @@
 
 3.  Adjust `locales` settings in `src/config.js`:
 
-    ```js
+    ```js static
     // default locale is the first one
     export const locales = ['en-GB', 'cs-CZ'];
     ```
@@ -24,7 +24,7 @@
 
 4.  Add locale support in `src/client.js`:
 
-    ```js
+    ```js static
     import en from 'react-intl/locale-data/en';
     import cs from 'react-intl/locale-data/cs';
     ...
@@ -65,7 +65,7 @@ Just import the appropriate [component](https://github.com/yahoo/react-intl/wiki
 
 #### Example
 
-```jsx
+```js static
 import {
   defineMessages,
   FormattedMessage,

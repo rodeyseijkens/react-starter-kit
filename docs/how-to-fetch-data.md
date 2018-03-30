@@ -1,5 +1,3 @@
-## Data Fetching
-
 At a bare minimum you may want to use [HTML5 Fetch API][fetch] as an HTTP client utility for
 making Ajax request to the [data API server][nodeapi]. This API is supported natively in all the
 major browsers except for IE (note, that Edge browser does support Fetch).
@@ -23,7 +21,7 @@ routing level or from inside your React components as follows:
 
 #### Route Example
 
-```js
+```js static
 {
   path: '/posts/:id',
   async action({ params, fetch }) {
@@ -36,7 +34,7 @@ routing level or from inside your React components as follows:
 
 #### React Component
 
-```js
+```js static
 class Post extends React.Component {
   static contextTypes = { fetch: PropTypes.func.isRequired };
   handleDelete = (event) => {

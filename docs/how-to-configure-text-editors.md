@@ -1,5 +1,3 @@
-## How to Configure Text Editors and IDEs for React.js [![img](https://img.shields.io/badge/discussion-join-green.svg?style=flat-square)](https://github.com/kriasoft/react-starter-kit/issues/117)
-
 > Tips and tricks on how to configure your favorite text editor or IDE to work
 > with React.js/ES6+/JSX.
 
@@ -37,8 +35,8 @@ Install atom packages
 * [linter-stylelint](https://atom.io/packages/linter-stylelint)
 * [react](https://atom.io/packages/react)
 
-```shell
-apm install linter linter-eslint react linter-stylelint
+```bash
+$ apm install linter linter-eslint react linter-stylelint
 ```
 
 Install local npm packages
@@ -48,8 +46,8 @@ Install local npm packages
 * [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
 * [stylelint](https://www.npmjs.com/package/stylelint)
 
-```shell
-yarn add --dev eslint babel-eslint eslint-plugin-react stylelint
+```bash
+$ yarn add --dev eslint babel-eslint eslint-plugin-react stylelint
 ```
 
 _You may need to restart atom for changes to take effect_
@@ -79,11 +77,11 @@ Set Babel as default syntax for a particular extension:
 
 Install local npm packages
 
-```
-yarn add --dev eslint@latest
-yarn add --dev babel-eslint@latest
-yarn add --dev eslint-plugin-react
-yarn add --dev stylelint
+```bash
+$ yarn add --dev eslint@latest
+$ yarn add --dev babel-eslint@latest
+$ yarn add --dev eslint-plugin-react
+$ yarn add --dev stylelint
 ```
 
 ### VSCode
@@ -94,10 +92,10 @@ Install vscode packages
 * [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 * [editorconfig](https://github.com/editorconfig/editorconfig-vscode)
 
-```shell
-ext install eslint
-ext install prettier-vscode
-ext install EditorConfig
+```bash
+$ ext install eslint
+$ ext install prettier-vscode
+$ ext install EditorConfig
 ```
 
 Add the following entries to your User Settings `(cmd + ,)`

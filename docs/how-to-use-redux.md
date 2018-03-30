@@ -1,4 +1,4 @@
-## How to Integrate [Redux](http://redux.js.org/index.html)
+### [Redux](http://redux.js.org/index.html)
 
 Merge `feature/redux` branch with Git. If you are interested in `feature/react-intl`, merge that
 branch instead as it also includes Redux.

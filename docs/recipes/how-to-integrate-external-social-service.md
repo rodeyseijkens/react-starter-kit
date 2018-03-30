@@ -1,10 +1,10 @@
-## How to Integrate [Disqus](https://disqus.com)
+### How to Integrate [Disqus](https://disqus.com)
 
 https://disqus.com/admin/create/
 
 #### `DisqusThread.js`
 
-```js
+```js static
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -15,7 +15,7 @@ function renderDisqus() {
   if (window.DISQUS === undefined) {
     var script = document.createElement('script');
     script.async = true;
-    script.src = 'https://' + SHORTNAME + '.disqus.com/embed.js';
+    script.src = `https://${SHORTNAME}.disqus.com/embed.js`;
     document.getElementsByTagName('head')[0].appendChild(script);
   } else {
     window.DISQUS.reset({ reload: true });
@@ -64,7 +64,7 @@ export default DisqusThread;
 
 #### `MyComponent.js`
 
-```js
+```js static
 import React from 'react';
 import DisqusThread from './DisqusThread.js';
 

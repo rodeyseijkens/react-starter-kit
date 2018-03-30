@@ -1,5 +1,3 @@
-## React Style Guide
-
 > This style guide comes as an addition to
 > [Airbnb React/JSX Guide](https://github.com/airbnb/javascript/tree/master/react).
 > Feel free to modify it to suit your project's needs.
@@ -24,7 +22,7 @@
   This will allow to easily reference such components from other places in your code.\
   Use `import Nav from '../Navigation'` instead of `import Nav from '../Navigation/Navigation.js'`
 
-```
+```md
 /components/Navigation/icon.svg
 /components/Navigation/Navigation.css
 /components/Navigation/Navigation.js
@@ -33,7 +31,7 @@
 /components/Navigation/package.json
 ```
 
-```
+```json
 // components/Navigation/package.json
 {
   "name:": "Navigation",
@@ -49,7 +47,7 @@ For more information google for
 * Prefer using stateless functional components whenever possible.\
   Components that don't use state are better to be written as simple PureComponents.
 
-```jsx
+```js static
 // Bad
 class Navigation extends Component {
   static propTypes = { items: PropTypes.array.isRequired };
@@ -128,7 +126,7 @@ class Navigation extends PureComponent {
 }
 ```
 
-```jsx
+```js static
 // Navigation.js
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
@@ -173,7 +171,7 @@ export default Navigation;
 * Use higher-order components (HOC) to extend existing React components.\
   Here is an example:
 
-```js
+```js static
 // withViewport.js
 import React, { Component } from 'react';
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment';
@@ -217,7 +215,7 @@ function withViewport(ComposedComponent) {
 export default withViewport;
 ```
 
-```js
+```js static
 // MyComponent.js
 import React from 'react';
 import withViewport from './withViewport';

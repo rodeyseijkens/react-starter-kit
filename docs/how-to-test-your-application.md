@@ -1,5 +1,3 @@
-## Testing your application
-
 ### Used libraries
 
 RSK comes with the following libraries for testing purposes:
@@ -21,7 +19,7 @@ command which will:
 * jest executes found files
 
 ```bash
-yarn test
+$ yarn test
 ```
 
 Alternatively, you can run the
@@ -34,7 +32,7 @@ command which will:
   tests related to changed files
 
 ```bash
-yarn test-watch
+$ yarn test-watch
 ```
 
 ### Coverage
@@ -48,7 +46,7 @@ command which will:
 * generates a coverage report
 
 ```bash
-yarn test-cover
+$ yarn test-cover
 ```
 
 To see your [code coverage](https://en.wikipedia.org/wiki/Code_coverage) run the
@@ -61,7 +59,7 @@ command which will:
 * opens the coverage report in your browser
 
 ```bash
-yarn coverage
+$ yarn coverage
 ```
 
 ### Conventions
@@ -76,7 +74,7 @@ To help you on your way RSK comes with the following
 [basic test case](../src/components/Layout/Layout.test.js)
 you can use as a starting point:
 
-```js
+```js static
 import React from 'react';
 import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
