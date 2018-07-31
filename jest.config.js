@@ -79,7 +79,7 @@ module.exports = {
   // testRegex: // [string]
   // testResultsProcessor: // [string]
   // testRunner: // [string]
-  // testURL: // [string]
+  testURL: 'http://localhost/',
   // timers: // [string]
 
   transform: {
