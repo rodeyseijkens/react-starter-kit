@@ -2,7 +2,7 @@ import React from 'react';
 import MarkdownIt from 'markdown-it';
 import fm from 'front-matter';
 
-import Layout from '../../components/base/Layout';
+import Layout from '../../components/globals/Layout';
 import DefaultPage from '../../components/templates/DefaultPage';
 
 async function action({ pathname, fetch }) {

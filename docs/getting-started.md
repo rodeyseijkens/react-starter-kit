@@ -1,8 +1,8 @@
 ### Requirements
 
-* Mac OS X, Windows, or Linux
-* [Yarn](https://yarnpkg.com/) package + [Node.js](https://nodejs.org/) v6.12.3 or newer
-* Text editor or IDE pre-configured with React/JSX/Flow/ESlint ([learn more](./how-to-configure-text-editors.md))
+- Mac OS X, Windows, or Linux
+- [Yarn](https://yarnpkg.com/) package + [Node.js](https://nodejs.org/) v6.12.3 or newer
+- Text editor or IDE pre-configured with React/JSX/Flow/ESlint ([learn more](./how-to-configure-text-editors.md))
 
 ### Directory Layout
 
@@ -11,13 +11,12 @@ Before you start, take a moment to see how the project structure looks like:
 ```md
 .
 ├── /build/ # The folder for compiled output
-├── /content/ # Static local api content files which are copied into the /build/content folder
 ├── /docs/ # Documentation files for the project
 ├── /node_modules/ # 3rd-party libraries and utilities
 ├── /public/ # Static files which are copied into the /build/public folder
 ├── /src/ # The source code of the application
 │ ├── /actions/ # Redux Actions
-│ ├── /components/ # React components (in atomic design)
+│ ├── /components/ # Project components (in semantic folders see Terminology)
 │ ├── /constants/ # Constant variables
 │ ├── /reducers/ # Redux Reducers
 │ ├── /routes/ # Page/screen components along with the routing information
@@ -45,7 +44,6 @@ Before you start, take a moment to see how the project structure looks like:
 │ └── /webpack.config.js # Configurations for client-side and server-side bundles
 ├── Dockerfile # Commands for building a Docker image for production
 ├── package.json # The list of 3rd party libraries and utilities
-├── web.config # The Azure web.config file for proper routing and MIME types
 └── yarn.lock # Fixed versions of all the dependencies
 ```
 
@@ -130,7 +128,7 @@ To launch unit tests:
 
 ```bash
 $ yarn test          # Run unit tests with Jest
-$ yarn test:watch    # Launch unit test runner and start watching for changes
+$ yarn test-watch    # Launch unit test runner and start watching for changes
 ```
 
 By default, [Jest](https://facebook.github.io/jest/) test runner is looking for test files
@@ -158,7 +156,9 @@ To work and launch the styleguide, run:
 $ yarn styleguide
 ```
 
-This will run a local server of the styleguide, for more information on how to
+This will run a local server of the styleguide. It will show the components in the `components` folder.
+
+For more information on how to
 document components etc. see [React Styleguidist](https://react-styleguidist.js.org/).
 
 ### How to Update

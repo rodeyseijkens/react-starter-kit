@@ -1,0 +1,32 @@
+@import '../../globals/variables.css';
+
+.root {
+  background: #f5f5f5;
+  color: var(--default-font-color);
+  font-family: var(--default-font-family);
+}
+
+.container {
+  font-size: 1.5rem; /* ~24px */
+  margin: 0 auto;
+  max-width: var(--screen-xl);
+  padding: var(--default-padding-large) var(--default-padding-small);
+  text-align: center;
+}
+
+.link,
+.link:active,
+.link:hover,
+.link:visited {
+  color: var(--default-font-color);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.spacer {
+  padding-left: var(--default-padding);
+  padding-right: var(--default-padding);
+}

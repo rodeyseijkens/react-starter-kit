@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
-import s from './ErrorPage.css';
+import themableWithStyles from 'themableWithStyles';
 
-class ErrorPage extends React.Component {
+import styles from './ErrorPage.css';
+
+class ErrorPage extends PureComponent {
   static propTypes = {
     error: PropTypes.shape({
       name: PropTypes.string.isRequired,
@@ -18,11 +19,13 @@ class ErrorPage extends React.Component {
   };
 
   render() {
-    if (__DEV__ && this.props.error) {
+    const { error } = this.props;
+
+    if (__DEV__ && error) {
       return (
         <div>
-          <h1>{this.props.error.name}</h1>
-          <pre>{this.props.error.stack}</pre>
+          <h1>{error.name}</h1>
+          <pre>{error.stack}</pre>
         </div>
       );
     }
@@ -37,4 +40,4 @@ class ErrorPage extends React.Component {
 }
 
 export { ErrorPage as ErrorPageWithoutStyle };
-export default withStyles(s)(ErrorPage);
+export default themableWithStyles(styles)(ErrorPage);

@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Provider as ReduxProvider } from 'react-redux';
 
 const ContextType = {
-  baseUrl: PropTypes.string,
   // Enables critical path CSS rendering
   // https://github.com/kriasoft/isomorphic-style-loader
   insertCss: PropTypes.func.isRequired,
   // Universal HTTP client
   fetch: PropTypes.func.isRequired,
   pathname: PropTypes.string.isRequired,
-  query: PropTypes.object,
+  query: PropTypes.shape(),
   // Integrate Redux
   // http://redux.js.org/docs/basics/UsageWithReact.html
   ...ReduxProvider.childContextTypes,
@@ -38,7 +37,7 @@ const ContextType = {
  *     container,
  *   );
  */
-class App extends React.PureComponent {
+class App extends PureComponent {
   static propTypes = {
     context: PropTypes.shape(ContextType).isRequired,
     children: PropTypes.element.isRequired,
@@ -47,13 +46,15 @@ class App extends React.PureComponent {
   static childContextTypes = ContextType;
 
   getChildContext() {
-    return this.props.context;
+    const { context } = this.props;
+    return context;
   }
 
   render() {
+    const { children } = this.props;
     // NOTE: If you need to add or modify header, footer etc. of the app,
     // please do that inside the Layout component.
-    return React.Children.only(this.props.children);
+    return React.Children.only(children);
   }
 }
 

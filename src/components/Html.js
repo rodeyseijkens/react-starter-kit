@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import serialize from 'serialize-javascript';
 import config from '../config';
 
 /* eslint-disable react/no-danger */
 
-class Html extends React.PureComponent {
+class Html extends PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
@@ -51,9 +51,12 @@ class Html extends React.PureComponent {
         <body>
           <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
           <script
+            id="initialState"
             dangerouslySetInnerHTML={{ __html: `window.App=${serialize(app)}` }}
           />
-          {scripts.map(script => <script key={script} src={script} />)}
+          {scripts.map(script => (
+            <script key={script} src={script} />
+          ))}
           {config.analytics.googleTrackingId && (
             <script
               dangerouslySetInnerHTML={{

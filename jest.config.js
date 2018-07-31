@@ -48,7 +48,9 @@ module.exports = {
   // https://facebook.github.io/jest/docs/en/configuration.html#modulefileextensions-array-string
   moduleFileExtensions: ['js', 'json', 'jsx', 'node'],
 
-  // moduleDirectories: // [array<string>]
+  // Allow absolute paths in imports, e.g. import Button from 'components/Button'
+  // Keep in sync with .flowconfig, .eslintrc, jest.config.js and styleguide.config.js
+  moduleDirectories: ['node_modules', 'src'], // [array<string>]
 
   // A map from regular expressions to module names that allow to stub out resources,
   // like images or styles with a single module.

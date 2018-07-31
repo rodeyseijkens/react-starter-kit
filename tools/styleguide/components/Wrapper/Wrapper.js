@@ -1,11 +1,18 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Provider } from 'react-redux';
+
 import Switcher from '../Switcher';
-import s from './Wrapper.css';
+import styles from './Wrapper.css';
+import Layout from '../../../../src/components/globals/Layout';
+
 import createSequence from '../../utils/createSequence';
+import configureStore from '../../../../src/store/configureStore';
 
 const seq = createSequence();
+
+const store = configureStore({}, { fetch });
 
 class Wrapper extends PureComponent {
   static propTypes = {
@@ -31,7 +38,7 @@ class Wrapper extends PureComponent {
       <Switcher
         id={this.id}
         name="toggle"
-        className={s.toggle}
+        className={styles.toggle}
         value={isTransparent}
         onChange={this.handleBackgroundToggle}
         label="Transparent background"
@@ -40,16 +47,25 @@ class Wrapper extends PureComponent {
   }
 
   render() {
+    const { children } = this.props;
+    const { isTransparent } = this.state;
+
     const wrapperClassName = classNames(
-      s.wrapper,
-      this.state.isTransparent ? s.transparent : s.white,
+      styles.wrapper,
+      isTransparent ? styles.transparent : styles.white,
     );
 
     return (
-      <div className={s.container}>
-        <header className={s.header}>{this.renderBackgroundToggle()}</header>
-        <div className={wrapperClassName}>{this.props.children}</div>
-      </div>
+      <Provider store={store}>
+        <div className={styles.container}>
+          <header className={styles.header}>
+            {this.renderBackgroundToggle()}
+          </header>
+          <div className={wrapperClassName}>
+            <Layout contentOnly>{children}</Layout>
+          </div>
+        </div>
+      </Provider>
     );
   }
 }

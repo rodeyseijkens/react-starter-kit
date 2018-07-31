@@ -1,6 +1,7 @@
 import React from 'react';
+
+import Layout from '../../components/globals/Layout';
 import Home from '../../components/templates/Home';
-import Layout from '../../components/base/Layout';
 
 async function action() {
   return {

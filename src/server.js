@@ -6,12 +6,13 @@ import nodeFetch from 'node-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
+import helmet from 'helmet';
+
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './components/templates/ErrorPage';
 import errorPageStyle from './components/templates/ErrorPage/ErrorPage.css';
 import createFetch from './createFetch';
-import localContentAPI from './localContentAPI';
 import router from './router';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
@@ -32,13 +33,6 @@ process.on('unhandledRejection', (reason, p) => {
 global.navigator = global.navigator || {};
 global.navigator.userAgent = global.navigator.userAgent || 'all';
 
-// Set server-side routes
-const routes = {
-  static: config.baseUrl ? `${config.baseUrl}` : `/`,
-  localapi: config.baseUrl ? `${config.baseUrl}/localapi` : '/localapi',
-  server: config.baseUrl ? `${config.baseUrl}?*` : '*',
-};
-
 const app = express();
 
 //
@@ -50,21 +44,18 @@ app.set('trust proxy', config.trustProxy);
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
-app.use(routes.static, express.static(path.resolve(__dirname, 'public')));
+app.use(helmet());
+app.use(express.static(path.resolve(__dirname, 'public')));
 
 app.use(cookieParser());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //
-// Register content API
-// -----------------------------------------------------------------------------
-app.use(routes.localapi, localContentAPI);
-
-//
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
-app.get(routes.server, async (req, res, next) => {
+app.get('*', async (req, res, next) => {
   try {
     const css = new Set();
 
@@ -108,12 +99,7 @@ app.get(routes.server, async (req, res, next) => {
       // You can access redux through react-redux connect
       store,
       storeSubscription: null,
-      baseUrl: config.baseUrl,
     };
-
-    if (context.baseUrl) {
-      router.baseUrl = context.baseUrl;
-    }
 
     const route = await router.resolve(context);
 
@@ -142,7 +128,6 @@ app.get(routes.server, async (req, res, next) => {
 
     data.scripts = Array.from(scripts);
     data.app = {
-      baseUrl: config.baseUrl,
       apiUrl: config.api.url,
       state: context.store.getState(),
     };

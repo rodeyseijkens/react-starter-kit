@@ -3,6 +3,7 @@
 
 # TEAM
 
+  Rodet Seijkens - Full-stack developer - @rodey
   <name> -- <role> -- <twitter>
 
 # THANKS

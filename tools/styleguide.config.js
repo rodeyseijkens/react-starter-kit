@@ -1,6 +1,11 @@
 const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
+const find = require('find');
 const { theme, styles } = require('./styleguide/styles');
 const pkg = require('../package.json');
+
+const babelrc = require('../babel.config.js');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
@@ -10,9 +15,89 @@ const reScript = /\.(js|jsx|mjs)$/;
 const reStyle = /\.(css|less|styl|scss|sass|sss)$/;
 const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
 
+/**
+ * Search for each component in the components,
+ * it will look for the package.json to determine which is an actual component.
+ */
+function listOfUrls(componentFolder) {
+  const comp = find.fileSync(
+    new RegExp(
+      `(?:.*)(?:src/components/${componentFolder}).([A-z.]+).*(package.json)$`,
+      'i',
+    ),
+    ROOT_DIR,
+  );
+
+  const list = Object.assign(
+    {},
+    ...[...comp].map(packagePath => {
+      const { name, main } = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+      const componentPath = packagePath.replace(
+        'package.json',
+        main.replace('./', ''),
+      );
+      return { [name]: componentPath };
+    }),
+  );
+  /* eslint-enable */
+
+  return Object.keys(list).map(val => list[val]);
+}
+
+const cacheComponentList = {};
+
+function cacheComponents(compName) {
+  if ({}.hasOwnProperty.call(cacheComponentList, compName)) {
+    return cacheComponentList[compName];
+  }
+
+  cacheComponentList[compName] = listOfUrls(compName);
+
+  return cacheComponentList[compName];
+}
+
+const componentList = [
+  {
+    name: 'Components',
+    sections: [
+      {
+        name: 'Elements',
+        components() {
+          return cacheComponents('elements');
+        },
+      },
+      {
+        name: 'Collections',
+        components() {
+          return cacheComponents('collections');
+        },
+      },
+      {
+        name: 'Views',
+        components() {
+          return cacheComponents('views');
+        },
+      },
+      {
+        name: 'Modules',
+        components() {
+          return cacheComponents('modules');
+        },
+      },
+      {
+        name: 'Behaviors',
+        components() {
+          return cacheComponents('behaviors');
+        },
+      },
+    ],
+  },
+];
+
 module.exports = {
   require: ['@babel/polyfill'],
-  title: `${pkg.name} v${pkg.version}`,
+  title: pkg.name,
+  version: pkg.version,
   editorConfig: {
     theme: 'dracula', // future config
   },
@@ -21,7 +106,15 @@ module.exports = {
   pagePerSection: true,
   getComponentPathLine(componentPath) {
     const name = path.basename(componentPath, '.js');
-    return `import { ${name} } from 'components';`;
+
+    const componentFolder = 'components';
+
+    const componentTypeFolder = componentPath
+      .split(componentFolder)[1]
+      .split(name)[0]
+      .slice(0, -1);
+
+    return `import { ${name} } from '${componentFolder}${componentTypeFolder}';`;
   },
   // Override Styleguidist components
   styleguideComponents: {
@@ -34,12 +127,23 @@ module.exports = {
       // Keep in sync with .flowconfig, .eslintrc, jest.config.js and styleguide.config.js
       modules: ['node_modules', 'src'],
     },
+    plugins: [
+      // Define free variables
+      // https://webpack.js.org/plugins/define-plugin/
+      new webpack.DefinePlugin({
+        'process.env.BROWSER': true,
+        __DEV__: false,
+      }),
+    ],
     module: {
       rules: [
         {
           test: reScript,
           include: [SRC_DIR, resolvePath('tools')],
           loader: 'babel-loader',
+          options: {
+            presets: babelrc.presets,
+          },
         },
         {
           test: /\.(css|less|styl|scss|sass|sss)$/,
@@ -85,6 +189,10 @@ module.exports = {
           content: '../docs/getting-started.md',
         },
         {
+          name: 'Terminology',
+          content: '../docs/terminology.md',
+        },
+        {
           name: 'Configure text editors',
           content: '../docs/how-to-configure-text-editors.md',
         },
@@ -95,10 +203,6 @@ module.exports = {
         {
           name: 'How to fetch data',
           content: '../docs/how-to-fetch-data.md',
-        },
-        {
-          name: 'Use the local content api',
-          content: '../docs/how-to-use-local-content-api.md',
         },
         {
           name: 'Multilanguage',
@@ -136,34 +240,6 @@ module.exports = {
         },
       ],
     },
-    {
-      name: 'Components',
-      sections: [
-        {
-          name: 'Elements',
-          components: '../src/rsk-components/elements/*/**/*.js',
-        },
-        {
-          name: 'Collections',
-          components: '../src/rsk-components/collections/*/**/*.js',
-        },
-        {
-          name: 'Views',
-          components: '../src/rsk-components/views/*/**/*.js',
-        },
-        {
-          name: 'Modules',
-          components: '../src/rsk-components/modules/*/**/*.js',
-        },
-        {
-          name: 'Behaviors',
-          components: '../src/rsk-components/behaviors/*/**/*.js',
-        },
-        {
-          name: 'Addons',
-          components: '../src/rsk-components/addons/*/**/*.js',
-        },
-      ],
-    },
+    ...componentList,
   ],
 };

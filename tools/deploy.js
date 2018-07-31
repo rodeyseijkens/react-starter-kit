@@ -85,7 +85,7 @@ async function deploy() {
 
   // Build the project in RELEASE mode which
   // generates optimized and minimized bundles
-  process.argv.push('--release');
+  if (!process.argv.includes('--dev')) process.argv.push('--release');
   if (remote.static) process.argv.push('--static');
   await run(require('./build').default); // eslint-disable-line global-require
   if (process.argv.includes('--static')) {

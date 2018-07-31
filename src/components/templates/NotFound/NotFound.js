@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
-import s from './NotFound.css';
+import themableWithStyles from 'themableWithStyles';
 
-@withStyles(s)
-class NotFound extends React.Component {
+import styles from './NotFound.css';
+
+@themableWithStyles(styles)
+class NotFound extends PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
   };
 
   render() {
+    const { title } = this.props;
     return (
-      <div className={s.root}>
-        <div className={s.container}>
-          <h1>{this.props.title}</h1>
+      <div className={styles.root}>
+        <div className={styles.container}>
+          <h1>{title}</h1>
           <p>Sorry, the page you were trying to view does not exist.</p>
         </div>
       </div>

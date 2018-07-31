@@ -8,22 +8,26 @@ import App from './components/App';
 import createFetch from './createFetch';
 import configureStore from './store/configureStore';
 import history from './history';
-import { updateMeta } from './DOMUtils';
+import { updateMeta } from './utils/DOM';
 import router from './router';
+
+const { apiUrl, state } = window.App;
+// Delete script tag when initialized
+const $initialState = document.querySelector('#initialState');
+$initialState.parentNode.removeChild($initialState);
 
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
 const fetchClient = createFetch(fetch, {
-  apiUrl: window.App.apiUrl,
+  apiUrl,
 });
 
 const context = {
-  baseUrl: window.App.baseUrl,
   // Enables critical path CSS rendering
   // https://github.com/kriasoft/isomorphic-style-loader
   insertCss: (...styles) => {
     // eslint-disable-next-line no-underscore-dangle
-    const removeCss = styles.map(x => x._insertCss());
+    const removeCss = styles.map(x => x._insertCss({ prepend: true }));
     return () => {
       removeCss.forEach(f => f());
     };
@@ -32,14 +36,9 @@ const context = {
   fetch: fetchClient,
   // Initialize a new Redux store
   // http://redux.js.org/docs/basics/UsageWithReact.html
-  store: configureStore(window.App.state, { history, fetch: fetchClient }),
+  store: configureStore(state, { history, fetch: fetchClient }),
   storeSubscription: null,
 };
-
-if (context.baseUrl) {
-  router.baseUrl = context.baseUrl;
-}
-
 const container = document.getElementById('app');
 let currentLocation = history.location;
 let appInstance;

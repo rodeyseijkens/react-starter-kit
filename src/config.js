@@ -9,17 +9,19 @@ if (process.env.BROWSER) {
 module.exports = {
   // Node.js app
   port: process.env.PORT || 3000,
-  // prefix the baseurl with a '/' and leave the trailing slash out
-  baseUrl: process.env.BASE_URL || '',
+
   // https://expressjs.com/en/guide/behind-proxies.html
-  trustProxy: process.env.TRUST_PROXY || 'loopback',
+  trustProxy:
+    process.env.TRUST_PROXY !== 'true'
+      ? process.env.TRUST_PROXY
+      : true || 'loopback',
 
   // API Gateway
   api: {
     // API URL to be used in the fetch code
     url:
       process.env.API_SERVER_URL ||
-      `http://localhost:${process.env.PORT || 3000}/localapi`, // when using a base url in conjunction with the /localapi make sure to prefix it in the url /base/localapi
+      `http://localhost:${process.env.PORT || 3000}/api`, // when using a base url in conjunction with the /localapi make sure to prefix it in the url /base/localapi
   },
 
   // Web analytics

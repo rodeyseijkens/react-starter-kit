@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
 
-import s from './DefaultPage.css';
+import themableWithStyles from 'themableWithStyles';
 
-@withStyles(s)
-class Page extends React.Component {
+import styles from './DefaultPage.css';
+
+@themableWithStyles(styles)
+class Page extends PureComponent {
   static propTypes = {
     title: PropTypes.string.isRequired,
     html: PropTypes.string.isRequired,
@@ -14,8 +15,8 @@ class Page extends React.Component {
   render() {
     const { title, html } = this.props;
     return (
-      <div className={s.root}>
-        <div className={s.container}>
+      <div className={styles.root}>
+        <div className={styles.container}>
           <h1>{title}</h1>
           <div
             // eslint-disable-next-line react/no-danger

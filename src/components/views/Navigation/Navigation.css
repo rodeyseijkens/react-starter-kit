@@ -1,0 +1,24 @@
+@import '../../globals/variables.css';
+
+.root {
+  float: right;
+  font-family: var(--default-font-family);
+  margin: 6px 0 0;
+}
+
+.link {
+  display: inline-block;
+  font-size: var(--default-font-size);
+  padding: 3px 8px;
+  text-decoration: none;
+}
+
+.link,
+.link:active,
+.link:visited {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.link:hover {
+  color: rgba(255, 255, 255, 1);
+}

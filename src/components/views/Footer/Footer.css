@@ -1,0 +1,39 @@
+@import '../../globals/variables.css';
+
+.root {
+  background: var(--default-font-color);
+  color: #f5f5f5;
+  font-family: var(--default-font-family);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--screen-xl);
+  padding: var(--default-padding-large) var(--default-padding-small);
+  text-align: center;
+}
+
+.text {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.spacer {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.text,
+.link {
+  font-size: var(--default-font-size);
+  padding: 2px 5px;
+}
+
+.link,
+.link:active,
+.link:visited {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+}
+
+.link:hover {
+  color: rgba(255, 255, 255, 1);
+}

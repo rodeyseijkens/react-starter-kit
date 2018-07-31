@@ -1,4 +1,5 @@
 import React from 'react';
+
 import ErrorPage from '../../components/templates/ErrorPage';
 
 function action() {

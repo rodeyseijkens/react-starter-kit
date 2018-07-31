@@ -1,6 +1,6 @@
-### Build and deploy, manual to Azure
+### Build and deploy, manual to an Node Environments
 
-Make sure the git build repository is hooked up to the Azure environments.
+Make sure the git build repository is hooked up to the Node environment.
 Check your package.json and look for
 
 ```md
@@ -17,7 +17,7 @@ $ DEPLOY_BRANCH=test yarn deploy
 
 ### Build and deploy, automated setup
 
-#### 1. Bamboo
+#### 1. Repository
 
 ##### 1.1 Run yarn to install packages
 
@@ -39,13 +39,13 @@ $ yarn build
 $ yarn build --release
 ```
 
-#### 1.3 Copy `build` folder (located in root) to Azure Environment
+#### 1.3 Copy `build` folder (located in root) to Deployment Environment
 
-### 2 Azure enviornment
+### 2 Deployment enviornment
 
 #### 2.1 Run the following commands.
 
 ```bash
-$ npm install --production --no-progress
-$ npm start
+$ yarn install --production --no-progress
+$ yarn start
 ```

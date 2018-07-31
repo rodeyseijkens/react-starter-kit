@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Link /> is rendering children correctly 1`] = `
+<a
+  href="/internal-link"
+  onClick={[Function]}
+>
+  Internal Link
+</a>
+`;

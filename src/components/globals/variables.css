@@ -1,0 +1,99 @@
+:root {
+  /*
+  * Layout & Sizes
+  * ======================================================================== */
+  --default-padding-small: 0.625rem; /* 10px */
+  --default-padding: 1rem; /* 16px */
+  --default-padding-large: 1.375rem; /* 22px */
+  --default-border-radius-small: 0.1875rem;
+  --default-border-radius: 0.25rem;
+
+  /*
+  * Colors
+  * ======================================================================== */
+  --color-primary: #61dafb;
+  --color-secondary: #373277;
+  --color-success: #3bbf51;
+  --color-danger: #e22d44;
+  --color-info: #5856d6;
+  --color-warning: #ffae00;
+  --color-pending: var(--color-info);
+  --color-error: var(--color-danger);
+  --default-background-color: #f5f5f5;
+  --default-font-color: #333;
+  --default-font-color-light:
+    color(
+      var(--default-font-color) blend(var(--default-background-color) 90%)
+    );
+  --default-link-color: var(--color-primary);
+  --default-link-decoration: none;
+  --default-link-hover-color: inherit;
+  --default-link-hover-decoration: underline;
+
+  /*
+  * Fonts
+  * ======================================================================== */
+  --default-font-size-small: 0.625rem; /* 10px */
+  --default-font-size: 1rem; /* 16px */
+  --default-font-size-large: 1.375rem; /* 22px */
+  --default-line-height-small: 1.25;
+  --default-line-height: 1.5;
+  --default-line-height-large: 2;
+  --default-font-weight-light: 300;
+  --default-font-weight-regular: 400;
+  --default-font-weight-medium: 600;
+  --default-font-apple: -apple-system, 'BlinkMacSystemFont';
+  --default-font-fallback:
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  --default-font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --default-font-family:
+    var(--default-font-apple),
+    var(--default-font-fallback),
+    var(--default-font-emoji);
+  --default-code-font-family:
+    'SF Mono',
+    'Monaco',
+    'Inconsolata',
+    'Fira Code',
+    'Fira Mono',
+    'Droid Sans Mono',
+    'Consolas',
+    'Roboto Mono',
+    'Source Code Pro',
+    monospace;
+  --default-paragraph-margin-bottom: 1rem;
+
+  /*
+  * Animation
+  * ======================================================================== */
+  --default-transition-duration: 150ms;
+  --default-transition-type: ease;
+  --default-transition: all var(--default-transition-duration) var(--default-transition-type);
+
+  /*
+  * Media queries breakpoints
+  * ======================================================================== */
+  --screen-xs: 36rem; /* 576px */
+  --screen-sm: 48rem; /* 768px */
+  --screen-md: 62rem; /* 992px */
+  --screen-lg: 75rem; /* 1200px */
+  --screen-xl: 86rem; /* 1376px */
+
+  @custom-media --xs-min (min-width: 36rem); /* 576px */
+  @custom-media --sm-min (min-width: 48rem); /* 768px */
+  @custom-media --md-min (min-width: 62rem); /* 992px */
+  @custom-media --lg-min (min-width: 75rem); /* 1200px */
+  @custom-media --xl-min (min-width: 86rem); /* 1376px */
+  @custom-media --xs-max (max-width: calc(36rem - 0.525)) ); /* < 576px = 35.9375rem */
+  @custom-media --sm-max (max-width: calc(48rem - 0.525)) ); /* < 768px = 47.9375rem */
+  @custom-media --md-max (max-width: calc(62rem - 0.525)) ); /* < 992px = 61.9375rem */
+  @custom-media --lg-max (max-width: calc(75rem - 0.525)) ); /* < 1200px = 74.9375rem */
+}

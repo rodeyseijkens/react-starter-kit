@@ -1,0 +1,293 @@
+@import '../variables.css';
+
+/*
+ * Base styles
+ * ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color: #222;
+  font-family: var(--default-font-family);
+  font-size: var(--default-font-size); /* ~16px; */
+  font-weight: var(--default-font-weight-regular);
+  line-height: var(--default-line-height); /* ~22px */
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+:global(#app) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Suppress the focus outline on elements that cannot be accessed via keyboard.
+ * This prevents an unwanted focus outline from appearing around elements that
+ * might still respond to pointer events.
+ *
+ * Credit: https://github.com/suitcss/base
+ */
+[tabindex='-1']:focus {
+  outline: 0 !important;
+}
+
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ *
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection,
+::selection {
+  background: color(var(--color-primary) alpha(75%));
+  text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+  box-sizing: content-box;
+  display: block;
+  height: 1px;
+  margin: 1em 0;
+  padding: 0;
+}
+
+/* Reset margins on paragraphs
+ * Similarly, the top margin on `<p>`s get reset. However, we also reset the
+ * bottom margin to use `rem` units instead of `em`.
+ */
+p {
+  line-height: 1.5;
+  margin-bottom: var(--default-paragraph-margin-bottom);
+  margin-top: 0;
+}
+
+/* Abbreviations */
+
+abbr[title],
+abbr[data-original-title] {
+  border-bottom: 0;
+  cursor: help;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+
+address {
+  font-style: normal;
+  line-height: inherit;
+  margin-bottom: 1rem;
+}
+
+ol,
+ul,
+dl {
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+dt {
+  font-weight: var(--default-font-weight-medium);
+}
+
+dd {
+  margin-bottom: 0.5rem;
+  margin-left: 0;
+}
+
+blockquote {
+  margin: 0 0 1rem;
+}
+
+dfn {
+  font-style: italic; /* Add the correct font style in Android 4.3- */
+}
+
+b,
+strong {
+  font-weight: bolder; /* Add the correct font weight in Chrome, Edge, and Safari */
+}
+
+small {
+  font-size: 80%; /* Add the correct font size in all browsers */
+}
+
+/*
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+ * Links
+ */
+
+a {
+  background-color: transparent; /* Remove the gray background on active links in IE 10. */
+  color: var(--default-link-color);
+  text-decoration: var(--default-link-decoration);
+  -webkit-text-decoration-skip: objects; /* Remove gaps in links underline in iOS 8+ and Safari 8+. */
+
+  &:hover {
+    color: var(--default-link-hover-color);
+  }
+}
+
+/*
+ * Remove the gap between audio, canvas, iframes,
+ * images, videos and the bottom of their containers:
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+  resize: vertical;
+}
+
+/*
+ * Browser upgrade prompt
+ * ========================================================================== */
+
+:global(.browserupgrade) {
+  background: #ccc;
+  color: #000;
+  margin: 0.2em 0;
+  padding: 0.2em 0;
+}
+
+/*
+ * Print styles
+ * Inlined to avoid the additional HTTP request:
+ * http://www.phpied.com/delay-loading-your-print-css/
+ * ========================================================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+  }
+
+  /*
+   * Don't show links that are fragment identifiers,
+   * or use the `javascript:` pseudo protocol
+   */
+
+  a[href^='#']::after,
+  a[href^='javascript:']::after {
+    content: '';
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /*
+   * Printing Tables:
+   * http://css-discuss.incutio.com/wiki/Printing_Tables
+   */
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

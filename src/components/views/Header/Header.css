@@ -1,0 +1,46 @@
+@import '../../globals/variables.css';
+
+:root {
+  --brand-color: var(--color-primary);
+}
+
+.root {
+  background: var(--color-secondary);
+  color: var(--default-font-color-light);
+  font-family: var(--default-font-family);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--screen-xl);
+  padding: 20px 0;
+}
+
+.brand {
+  color: color(var(--brand-color) lightness(+10%));
+  font-size: 1.75em; /* ~28px */
+  text-decoration: none;
+}
+
+.brandTxt {
+  margin-left: 10px;
+}
+
+.banner {
+  text-align: center;
+}
+
+.bannerTitle {
+  font-size: 4em;
+  font-weight: normal;
+  line-height: 1em;
+  margin: 0;
+  padding: 10px;
+}
+
+.bannerDesc {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.25em;
+  margin: 0;
+  padding: 0;
+}

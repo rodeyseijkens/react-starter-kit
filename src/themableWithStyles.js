@@ -46,7 +46,10 @@ const compose = (origCss = {}, newCss = {}) => {
         switch (typeof originalValue) {
           case 'object': {
             // exactly nested theme object - go recursive
-            result[key] = compose(originalValue, mixinValue);
+            result[key] = compose(
+              originalValue,
+              mixinValue,
+            );
             break;
           }
 
@@ -136,25 +139,25 @@ export default function themableWithStyles(origCss = {}) {
 
   return function decorateSource(DecoratedComponent) {
     class ThemableWithStyles extends Component {
+      static ComposedComponent =
+        process.env.NODE_ENV !== 'production' && DecoratedComponent;
+
       static displayName = `ThemableWithStyles(${getDisplayName(
         DecoratedComponent,
       )})`;
 
-      static ComposedComponent = process.env.NODE_ENV !== 'production' &&
-        DecoratedComponent;
-
-      static defaultProps = {
-        ...DecoratedComponent.defaultProps,
-        css: {},
-      };
-
       static propTypes = {
-        ...DecoratedComponent.propTypes,
+        ...DecoratedComponent.propTypes, // eslint-disable-line react/forbid-foreign-prop-types
         css: PropTypes.shape(),
       };
 
       static contextTypes = {
         insertCss: PropTypes.func,
+      };
+
+      static defaultProps = {
+        ...DecoratedComponent.defaultProps,
+        css: {},
       };
 
       constructor(props, context, ...rest) {
@@ -164,7 +167,8 @@ export default function themableWithStyles(origCss = {}) {
 
         // eslint-disable-next-line no-underscore-dangle
         if (typeof props.css._getCss === 'function') {
-          cssProps.push(props.css);
+          // Add the theme before the normal styling
+          cssProps.unshift(props.css);
         }
 
         this.removeCss =
@@ -180,9 +184,13 @@ export default function themableWithStyles(origCss = {}) {
       }
 
       getCss() {
-        const newCss = this.props.css || {};
+        const { css } = this.props;
+        const newCss = css || {};
         validate(origCss, newCss);
-        return compose(newCss, origCss);
+        return compose(
+          newCss,
+          origCss,
+        );
       }
 
       render() {

@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Layout /> renders children correctly 1`] = `
+<App
+  context={
+    Object {
+      "fetch": [Function],
+      "insertCss": [Function],
+      "pathname": "",
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+    }
+  }
+>
+  <ThemableWithStyles(Layout)
+    contentOnly={false}
+    css={Object {}}
+  >
+    <Layout
+      contentOnly={false}
+      css={Object {}}
+    >
+      <ThemableWithStyles(Header)
+        css={Object {}}
+      >
+        <Header
+          css={Object {}}
+        >
+          <header
+            className="root"
+          >
+            <div
+              className="container"
+            >
+              <ThemableWithStyles(Navigation)
+                css={Object {}}
+              >
+                <Navigation
+                  css={Object {}}
+                >
+                  <nav
+                    className="root"
+                    role="navigation"
+                  >
+                    <Link
+                      className="link"
+                      onClick={null}
+                      to="/about"
+                    >
+                      <a
+                        className="link"
+                        href="/about"
+                        onClick={[Function]}
+                      >
+                        About
+                      </a>
+                    </Link>
+                    <Link
+                      className="link"
+                      onClick={null}
+                      to="/contact"
+                    >
+                      <a
+                        className="link"
+                        href="/contact"
+                        onClick={[Function]}
+                      >
+                        Contact
+                      </a>
+                    </Link>
+                  </nav>
+                </Navigation>
+              </ThemableWithStyles(Navigation)>
+              <Link
+                className="brand"
+                onClick={null}
+                to="/"
+              >
+                <a
+                  className="brand"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  <img
+                    alt="React"
+                    height="38"
+                    src="logo-small.png"
+                    srcSet="logo-small@2x.png 2x"
+                    width="38"
+                  />
+                  <span
+                    className="brandTxt"
+                  >
+                    Your Company
+                  </span>
+                </a>
+              </Link>
+              <div
+                className="banner"
+              >
+                <h1
+                  className="bannerTitle"
+                >
+                  React
+                </h1>
+                <p
+                  className="bannerDesc"
+                >
+                  Complex web apps made easy
+                </p>
+              </div>
+            </div>
+          </header>
+        </Header>
+      </ThemableWithStyles(Header)>
+      <div
+        className="child"
+      />
+      <ThemableWithStyles(Feedback)
+        css={Object {}}
+      >
+        <Feedback
+          css={Object {}}
+        >
+          <section
+            className="root"
+          >
+            <div
+              className="container"
+            >
+              <a
+                className="link"
+                href="https://gitter.im/kriasoft/react-starter-kit"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Ask a question
+              </a>
+              <span
+                className="spacer"
+              >
+                |
+              </span>
+              <a
+                className="link"
+                href="https://github.com/kriasoft/react-starter-kit/issues/new"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Report an issue
+              </a>
+            </div>
+          </section>
+        </Feedback>
+      </ThemableWithStyles(Feedback)>
+      <ThemableWithStyles(Footer)
+        css={Object {}}
+      >
+        <Footer
+          css={Object {}}
+        >
+          <footer
+            className="root"
+          >
+            <div
+              className="container"
+            >
+              <span
+                className="text"
+              >
+                © Your Company
+              </span>
+              <span
+                className="spacer"
+              >
+                ·
+              </span>
+              <Link
+                className="link"
+                onClick={null}
+                to="/"
+              >
+                <a
+                  className="link"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Home
+                </a>
+              </Link>
+              <span
+                className="spacer"
+              >
+                ·
+              </span>
+              <Link
+                className="link"
+                onClick={null}
+                to="/privacy"
+              >
+                <a
+                  className="link"
+                  href="/privacy"
+                  onClick={[Function]}
+                >
+                  Privacy
+                </a>
+              </Link>
+              <span
+                className="spacer"
+              >
+                ·
+              </span>
+              <Link
+                className="link"
+                onClick={null}
+                to="/not-found"
+              >
+                <a
+                  className="link"
+                  href="/not-found"
+                  onClick={[Function]}
+                >
+                  Not Found
+                </a>
+              </Link>
+            </div>
+          </footer>
+        </Footer>
+      </ThemableWithStyles(Footer)>
+    </Layout>
+  </ThemableWithStyles(Layout)>
+</App>
+`;

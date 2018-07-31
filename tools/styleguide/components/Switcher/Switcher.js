@@ -4,10 +4,12 @@ import classNames from 'classnames';
 
 import themableWithStyles from 'themableWithStyles';
 
-import s from './Switcher.css';
+import styles from './Switcher.css';
 
-@themableWithStyles(s)
+@themableWithStyles(styles)
 class Switcher extends PureComponent {
+  input = null;
+
   static propTypes = {
     /**
      * @ignore
@@ -84,16 +86,16 @@ class Switcher extends PureComponent {
     danger: false,
     disabled: false,
     css: {
-      root: s.root,
-      label: s.label,
-      hint: s.hint,
-      description: s.description,
-      container: s.container,
-      checked: s.checked,
-      disabled: s.disabled,
-      danger: s.danger,
-      input: s.input,
-      switcher: s.switcher,
+      root: styles.root,
+      label: styles.label,
+      hint: styles.hint,
+      description: styles.description,
+      container: styles.container,
+      checked: styles.checked,
+      disabled: styles.disabled,
+      danger: styles.danger,
+      input: styles.input,
+      switcher: styles.switcher,
     },
   };
 
@@ -102,12 +104,11 @@ class Switcher extends PureComponent {
   };
 
   handleChange = event => {
-    if (!this.props.disabled) {
-      this.props.onChange(event.target.checked, event);
+    const { disabled, onChange } = this.props;
+    if (!disabled) {
+      onChange(event.target.checked, event);
     }
   };
-
-  input = null;
 
   focus() {
     if (this.input) {

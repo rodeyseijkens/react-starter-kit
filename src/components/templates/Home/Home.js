@@ -1,15 +1,24 @@
-import React from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import React, { PureComponent } from 'react';
 
-import s from './Home.css';
+import themableWithStyles from 'themableWithStyles';
 
-@withStyles(s)
-class Home extends React.Component {
+import styles from './Home.css';
+
+@themableWithStyles(styles)
+class Home extends PureComponent {
   render() {
     return (
-      <div className={s.root}>
-        <div className={s.container}>
-          <h1>React.js News</h1>
+      <div className={styles.root}>
+        <div className={styles.container}>
+          <h1>
+            React Starter Kit — <i>isomorphic</i> web app boilerplate
+          </h1>
+          <p>
+            Development built on top of Node.js, Express and React, containing
+            modern web development tools such as Webpack, Babel and Browsersync.
+            Helping you to stay productive following the best practices. A solid
+            starting point for both professionals and newcomers to the industry.
+          </p>
         </div>
       </div>
     );
