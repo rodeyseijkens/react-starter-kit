@@ -73,6 +73,13 @@
     "@babel/types" "7.0.0-beta.55"
     esutils "^2.0.0"
 
+"@babel/helper-builder-react-jsx@7.0.0-beta.56":
+  version "7.0.0-beta.56"
+  resolved "https://registry.yarnpkg.com/@babel/helper-builder-react-jsx/-/helper-builder-react-jsx-7.0.0-beta.56.tgz#4e3e3be02f006a89452a2e4541e1db53468c763e"
+  dependencies:
+    "@babel/types" "7.0.0-beta.56"
+    esutils "^2.0.0"
+
 "@babel/helper-call-delegate@7.0.0-beta.55":
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/helper-call-delegate/-/helper-call-delegate-7.0.0-beta.55.tgz#13f68c85c2adfe87c02f7ab4d2a63d35cd67d724"
@@ -163,6 +170,10 @@
 "@babel/helper-plugin-utils@7.0.0-beta.55":
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.55.tgz#31f40777efd6b961da8496a923c22d2b062b3f73"
+
+"@babel/helper-plugin-utils@7.0.0-beta.56":
+  version "7.0.0-beta.56"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.56.tgz#e5f63cae8b3b716825d64e69ad8b59d71cd2080c"
 
 "@babel/helper-regex@7.0.0-beta.55":
   version "7.0.0-beta.55"
@@ -588,12 +599,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.55"
 
-"@babel/plugin-transform-react-inline-elements@7.0.0-beta.55":
-  version "7.0.0-beta.55"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-inline-elements/-/plugin-transform-react-inline-elements-7.0.0-beta.55.tgz#7cc240759cec81601c281af0dcd019f5cc5e6bc9"
+"@babel/plugin-transform-react-inline-elements@7.0.0-beta.56":
+  version "7.0.0-beta.56"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-inline-elements/-/plugin-transform-react-inline-elements-7.0.0-beta.56.tgz#d82e722a5954169ba6f28f70ead086304ecd03c3"
   dependencies:
-    "@babel/helper-builder-react-jsx" "7.0.0-beta.55"
-    "@babel/helper-plugin-utils" "7.0.0-beta.55"
+    "@babel/helper-builder-react-jsx" "7.0.0-beta.56"
+    "@babel/helper-plugin-utils" "7.0.0-beta.56"
 
 "@babel/plugin-transform-react-jsx-self@7.0.0-beta.55":
   version "7.0.0-beta.55"
@@ -802,6 +813,14 @@
 "@babel/types@7.0.0-beta.55":
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.55.tgz#7755c9d2e58315a64f05d8cf3322379be16d9199"
+  dependencies:
+    esutils "^2.0.2"
+    lodash "^4.17.10"
+    to-fast-properties "^2.0.0"
+
+"@babel/types@7.0.0-beta.56":
+  version "7.0.0-beta.56"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.56.tgz#df456947a82510ec30361971e566110d89489056"
   dependencies:
     esutils "^2.0.2"
     lodash "^4.17.10"
