@@ -164,6 +164,10 @@
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0-beta.55.tgz#31f40777efd6b961da8496a923c22d2b062b3f73"
 
+"@babel/helper-plugin-utils@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/helper-plugin-utils/-/helper-plugin-utils-7.0.0.tgz#bbb3fbee98661c569034237cc03967ba99b4f250"
+
 "@babel/helper-regex@7.0.0-beta.55":
   version "7.0.0-beta.55"
   resolved "https://registry.yarnpkg.com/@babel/helper-regex/-/helper-regex-7.0.0-beta.55.tgz#74e6c063d1ef9f7e58b7a84c06e6ee4a5bb5a5da"
@@ -384,11 +388,11 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.55"
 
-"@babel/plugin-syntax-import-meta@^7.0.0-beta.55":
-  version "7.0.0-beta.55"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-import-meta/-/plugin-syntax-import-meta-7.0.0-beta.55.tgz#53b2cb3b288c2ff2614a24cf094ae340c5c8b11b"
+"@babel/plugin-syntax-import-meta@^7.2.0":
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-import-meta/-/plugin-syntax-import-meta-7.2.0.tgz#2333ef4b875553a3bcd1e93f8ebc09f5b9213a40"
   dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.55"
+    "@babel/helper-plugin-utils" "^7.0.0"
 
 "@babel/plugin-syntax-json-strings@7.0.0-beta.55":
   version "7.0.0-beta.55"
