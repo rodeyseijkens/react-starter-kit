@@ -1,12 +1,8 @@
-/**
- * @flow
- */
-
 function createSequence() {
   let start = 0;
 
   return {
-    next(): string {
+    next() {
       start += 1;
       return String(start);
     },

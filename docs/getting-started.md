@@ -2,7 +2,7 @@
 
 - Mac OS X, Windows, or Linux
 - [Yarn](https://yarnpkg.com/) package + [Node.js](https://nodejs.org/) v6.12.3 or newer
-- Text editor or IDE pre-configured with React/JSX/Flow/ESlint ([learn more](./how-to-configure-text-editors.md))
+- Text editor or IDE pre-configured with React/JSX/ESlint ([learn more](./how-to-configure-text-editors.md))
 
 ### Directory Layout
 

@@ -15,6 +15,17 @@ const { apiUrl, state } = window.App;
 // Delete script tag when initialized
 const $initialState = document.querySelector('#initialState');
 $initialState.parentNode.removeChild($initialState);
+document.querySelector('.no-js').classList.remove('no-js');
+
+// Enables critical path CSS rendering
+// https://github.com/kriasoft/isomorphic-style-loader
+const insertCss = (...styles) => {
+  // eslint-disable-next-line no-underscore-dangle
+  const removeCss = styles.map(x => x._insertCss({ prepend: true }));
+  return () => {
+    removeCss.forEach(f => f());
+  };
+};
 
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
@@ -23,15 +34,6 @@ const fetchClient = createFetch(fetch, {
 });
 
 const context = {
-  // Enables critical path CSS rendering
-  // https://github.com/kriasoft/isomorphic-style-loader
-  insertCss: (...styles) => {
-    // eslint-disable-next-line no-underscore-dangle
-    const removeCss = styles.map(x => x._insertCss({ prepend: true }));
-    return () => {
-      removeCss.forEach(f => f());
-    };
-  },
   // Universal HTTP client
   fetch: fetchClient,
   // Initialize a new Redux store
@@ -80,7 +82,9 @@ async function onLocationChange(location, action) {
 
     const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
     appInstance = renderReactApp(
-      <App context={context}>{route.component}</App>,
+      <App context={context} insertCss={insertCss}>
+        {route.component}
+      </App>,
       container,
       () => {
         if (isInitialRender) {

@@ -124,7 +124,7 @@ module.exports = {
   webpackConfig: {
     resolve: {
       // Allow absolute paths in imports, e.g. import Button from 'components/Button'
-      // Keep in sync with .flowconfig, .eslintrc, jest.config.js and styleguide.config.js
+      // Keep in sync with, .eslintrc, jest.config.js and styleguide.config.js
       modules: ['node_modules', 'src'],
     },
     plugins: [

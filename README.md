@@ -13,21 +13,20 @@ and newcomers to the industry.
 
 ### Getting Started
 
-* Follow the [getting started guide](./docs/getting-started.md) to download and run the project
+- Follow the [getting started guide](./docs/getting-started.md) to download and run the project
   ([Node.js](https://nodejs.org/) >= 6.12.3)
-* Check the [code recipes](./docs/recipes) used in this boilerplate, or share yours
+- Check the [code recipes](./docs/recipes) used in this boilerplate, or share yours
 
 ### Learn More
 
-* [Getting Started with React.js](http://facebook.github.io/react/)
-* [Getting Started with GraphQL and Relay](https://quip.com/oLxzA1gTsJsE)
-* [React.js Questions on StackOverflow](http://stackoverflow.com/questions/tagged/reactjs)
-* [React.js Discussion Board](https://discuss.reactjs.org/)
-* [Flux Architecture for Building User Interfaces](http://facebook.github.io/flux/)
-* [Enzyme — JavaScript Testing utilities for React](http://airbnb.io/enzyme/)
-* [Flow — A static type checker for JavaScript](http://flowtype.org/)
-* [The Future of React](https://github.com/reactjs/react-future)
-* [Learn ES6](https://babeljs.io/docs/learn-es6/), [ES6 Features](https://github.com/lukehoban/es6features#readme)
+- [Getting Started with React.js](http://facebook.github.io/react/)
+- [Getting Started with GraphQL and Relay](https://quip.com/oLxzA1gTsJsE)
+- [React.js Questions on StackOverflow](http://stackoverflow.com/questions/tagged/reactjs)
+- [React.js Discussion Board](https://discuss.reactjs.org/)
+- [Flux Architecture for Building User Interfaces](http://facebook.github.io/flux/)
+- [Enzyme — JavaScript Testing utilities for React](http://airbnb.io/enzyme/)
+- [The Future of React](https://github.com/reactjs/react-future)
+- [Learn ES6](https://babeljs.io/docs/learn-es6/), [ES6 Features](https://github.com/lukehoban/es6features#readme)
 
 ### License
 

@@ -49,7 +49,7 @@ module.exports = {
   moduleFileExtensions: ['js', 'json', 'jsx', 'node'],
 
   // Allow absolute paths in imports, e.g. import Button from 'components/Button'
-  // Keep in sync with .flowconfig, .eslintrc, jest.config.js and styleguide.config.js
+  // Keep in sync with, .eslintrc, jest.config.js and styleguide.config.js
   moduleDirectories: ['node_modules', 'src'], // [array<string>]
 
   // A map from regular expressions to module names that allow to stub out resources,
@@ -71,7 +71,7 @@ module.exports = {
   // rootDir: // [string]
   // roots: // [array<string>]
   // setupFiles: // [array]
-  setupTestFrameworkScriptFile: '<rootDir>/test/setupTestFramework.js', // [string]
+  setupFilesAfterEnv: ['<rootDir>/test/setupTestFramework.js'], // [array<string>]
   // snapshotSerializers: // [array<string>]
   // testEnvironment: // [string]
   // testMatch: // [array<string>]

@@ -1,19 +1,10 @@
-/* @flow */
-
-type Fetch = (apiUrl: string, url: string, options: ?any) => Promise<any>;
-
-type Options = {
-  apiUrl: string,
-  cookie?: string,
-};
-
 /**
  * Creates a wrapper function around the HTML5 Fetch API that provides
  * default arguments to fetch(...) and is intended to reduce the amount
  * of boilerplate code in the application.
  * https://developer.mozilla.org/docs/Web/API/Fetch_API/Using_Fetch
  */
-function createFetch(fetch: Fetch, { apiUrl, cookie }: Options) {
+function createFetch(fetch, { apiUrl, cookie }) {
   // NOTE: Tweak the default options to suite your application needs
   const defaults = {
     method: 'GET',
@@ -26,7 +17,7 @@ function createFetch(fetch: Fetch, { apiUrl, cookie }: Options) {
     },
   };
 
-  return async (url: string, options: any) =>
+  return async (url, options) =>
     url.startsWith('/api')
       ? fetch(`${apiUrl}${url.replace('/api', '')}`, {
           ...defaults,

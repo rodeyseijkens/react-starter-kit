@@ -24,11 +24,6 @@ const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
 const staticAssetName =
   isTest || isDebug ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]';
 
-// CSS Nano options http://cssnano.co/
-const minimizeCssOptions = {
-  discardComments: { removeAll: true },
-};
-
 //
 // Common configuration chunk to be used for both
 // client-side (client.js) and server-side (server.js) bundles
@@ -41,7 +36,7 @@ const config = {
 
   output: {
     path: resolvePath(BUILD_DIR, 'public/assets'),
-    publicPath: isDebug ? '/assets/' : 'assets/',
+    publicPath: isDebug ? '/assets/' : '/assets/',
     pathinfo: isVerbose,
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
     chunkFilename: isDebug
@@ -54,7 +49,7 @@ const config = {
 
   resolve: {
     // Allow absolute paths in imports, e.g. import Button from 'components/Button'
-    // Keep in sync with .flowconfig, .eslintrc, jest.config.js and styleguide.config.js
+    // Keep in sync with, .eslintrc, jest.config.js and styleguide.config.js
     modules: ['node_modules', 'src'],
   },
 
@@ -89,9 +84,6 @@ const config = {
                 debug: false,
               },
             ],
-            // Flow
-            // https://github.com/babel/babel/tree/master/packages/babel-preset-flow
-            '@babel/preset-flow',
             // JSX
             // https://github.com/babel/babel/tree/master/packages/babel-preset-react
             ['@babel/preset-react', { development: isDebug }],
@@ -107,7 +99,7 @@ const config = {
             // Stage 3
             '@babel/plugin-syntax-dynamic-import',
             '@babel/plugin-syntax-import-meta',
-            ['@babel/plugin-proposal-class-properties', { loose: false }],
+            ['@babel/plugin-proposal-class-properties', { loose: true }],
             '@babel/plugin-proposal-json-strings',
 
             // Other
@@ -140,7 +132,6 @@ const config = {
             loader: 'css-loader',
             options: {
               sourceMap: isDebug,
-              minimize: isDebug ? false : minimizeCssOptions,
             },
           },
 
@@ -158,8 +149,6 @@ const config = {
                 isTest || isDebug
                   ? '[name]-[local]-[hash:base64:5]'
                   : '[hash:base64:5]',
-              // CSS Nano http://cssnano.co/
-              minimize: isDebug ? false : minimizeCssOptions,
             },
           },
 
@@ -407,21 +396,20 @@ const serverConfig = {
           ...rule,
           options: {
             ...rule.options,
-            presets: rule.options.presets.map(
-              preset =>
-                preset[0] !== '@babel/preset-env'
-                  ? preset
-                  : [
-                      '@babel/preset-env',
-                      {
-                        targets: {
-                          node: pkg.engines.node.match(/(\d+\.?)+/)[0],
-                        },
-                        modules: false,
-                        useBuiltIns: false,
-                        debug: false,
+            presets: rule.options.presets.map(preset =>
+              preset[0] !== '@babel/preset-env'
+                ? preset
+                : [
+                    '@babel/preset-env',
+                    {
+                      targets: {
+                        node: pkg.engines.node.match(/(\d+\.?)+/)[0],
                       },
-                    ],
+                      modules: false,
+                      useBuiltIns: false,
+                      debug: false,
+                    },
+                  ],
             ),
           },
         };
