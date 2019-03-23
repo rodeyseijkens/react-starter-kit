@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import invariant from 'invariant';
 import hoistStatics from 'hoist-non-react-statics';
+import StyleContext from 'isomorphic-style-loader/StyleContext';
 
 const isSpecialKey = selector => selector === 'compose';
 
@@ -151,9 +152,7 @@ export default function themableWithStyles(origCss = {}) {
         css: PropTypes.shape(),
       };
 
-      static contextTypes = {
-        insertCss: PropTypes.func,
-      };
+      static contextType = StyleContext;
 
       static defaultProps = {
         ...DecoratedComponent.defaultProps,

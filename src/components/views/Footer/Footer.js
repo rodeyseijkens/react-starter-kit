@@ -18,10 +18,6 @@ class Footer extends PureComponent {
             Home
           </Link>
           <span className={styles.spacer}>·</span>
-          <Link className={styles.link} to="/privacy">
-            Privacy
-          </Link>
-          <span className={styles.spacer}>·</span>
           <Link className={styles.link} to="/not-found">
             Not Found
           </Link>

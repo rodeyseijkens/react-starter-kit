@@ -19,12 +19,11 @@ describe('<Layout />', () => {
     const store = mockStore(initialState);
     const wrapper = mount(
       <App
-        context={{
-          pathname: '',
-          insertCss: () => {},
-          fetch: () => {},
-          store,
-        }}
+        fetch={() => {}}
+        insertCss={() => {}}
+        pathname="/"
+        query={{}}
+        store={store}
       >
         <Layout>
           <div className="child" />

@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import deepForceUpdate from 'react-deep-force-update';
 import queryString from 'query-string';
-import { createPath } from 'history/PathUtils';
+import { createPath } from 'history';
 import App from './components/App';
 import createFetch from './createFetch';
 import configureStore from './store/configureStore';
@@ -34,12 +34,12 @@ const fetchClient = createFetch(fetch, {
 });
 
 const context = {
+  insertCss,
   // Universal HTTP client
   fetch: fetchClient,
   // Initialize a new Redux store
   // http://redux.js.org/docs/basics/UsageWithReact.html
   store: configureStore(state, { history, fetch: fetchClient }),
-  storeSubscription: null,
 };
 const container = document.getElementById('app');
 let currentLocation = history.location;
@@ -82,9 +82,7 @@ async function onLocationChange(location, action) {
 
     const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
     appInstance = renderReactApp(
-      <App context={context} insertCss={insertCss}>
-        {route.component}
-      </App>,
+      <App {...context}>{route.component}</App>,
       container,
       () => {
         if (isInitialRender) {

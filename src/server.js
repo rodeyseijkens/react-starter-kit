@@ -98,7 +98,6 @@ app.get('*', async (req, res, next) => {
       query: req.query,
       // You can access redux through react-redux connect
       store,
-      storeSubscription: null,
     };
 
     const route = await router.resolve(context);
@@ -110,7 +109,7 @@ app.get('*', async (req, res, next) => {
 
     const data = { ...route };
     data.children = ReactDOM.renderToString(
-      <App context={context}>{route.component}</App>,
+      <App {...context}>{route.component}</App>,
     );
     data.styles = [{ id: 'css', cssText: [...css].join('') }];
 

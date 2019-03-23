@@ -2,239 +2,220 @@
 
 exports[`<Layout /> renders children correctly 1`] = `
 <App
-  context={
+  fetch={[Function]}
+  insertCss={[Function]}
+  pathname="/"
+  query={Object {}}
+  store={
     Object {
-      "fetch": [Function],
-      "insertCss": [Function],
-      "pathname": "",
-      "store": Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Provider
+    store={
+      Object {
         "clearActions": [Function],
         "dispatch": [Function],
         "getActions": [Function],
         "getState": [Function],
         "replaceReducer": [Function],
         "subscribe": [Function],
-      },
+      }
     }
-  }
->
-  <ThemableWithStyles(Layout)
-    contentOnly={false}
-    css={Object {}}
   >
-    <Layout
+    <ThemableWithStyles(Layout)
       contentOnly={false}
       css={Object {}}
     >
-      <ThemableWithStyles(Header)
+      <Layout
+        contentOnly={false}
         css={Object {}}
       >
-        <Header
+        <ThemableWithStyles(Header)
           css={Object {}}
         >
-          <header
-            className="root"
+          <Header
+            css={Object {}}
           >
-            <div
-              className="container"
+            <header
+              className="root"
             >
-              <ThemableWithStyles(Navigation)
-                css={Object {}}
+              <div
+                className="container"
               >
-                <Navigation
+                <ThemableWithStyles(Navigation)
                   css={Object {}}
                 >
-                  <nav
-                    className="root"
-                    role="navigation"
+                  <Navigation
+                    css={Object {}}
                   >
-                    <Link
-                      className="link"
-                      onClick={null}
-                      to="/about"
+                    <nav
+                      className="root"
+                      role="navigation"
                     >
-                      <a
+                      <Link
                         className="link"
-                        href="/about"
-                        onClick={[Function]}
+                        onClick={null}
+                        to="/contact"
                       >
-                        About
-                      </a>
-                    </Link>
-                    <Link
-                      className="link"
-                      onClick={null}
-                      to="/contact"
-                    >
-                      <a
-                        className="link"
-                        href="/contact"
-                        onClick={[Function]}
-                      >
-                        Contact
-                      </a>
-                    </Link>
-                  </nav>
-                </Navigation>
-              </ThemableWithStyles(Navigation)>
-              <Link
-                className="brand"
-                onClick={null}
-                to="/"
-              >
-                <a
+                        <a
+                          className="link"
+                          href="/contact"
+                          onClick={[Function]}
+                        >
+                          Contact
+                        </a>
+                      </Link>
+                    </nav>
+                  </Navigation>
+                </ThemableWithStyles(Navigation)>
+                <Link
                   className="brand"
-                  href="/"
-                  onClick={[Function]}
+                  onClick={null}
+                  to="/"
                 >
-                  <img
-                    alt="React"
-                    height="38"
-                    src="logo-small.png"
-                    srcSet="logo-small@2x.png 2x"
-                    width="38"
-                  />
-                  <span
-                    className="brandTxt"
+                  <a
+                    className="brand"
+                    href="/"
+                    onClick={[Function]}
                   >
-                    Your Company
-                  </span>
-                </a>
-              </Link>
-              <div
-                className="banner"
-              >
-                <h1
-                  className="bannerTitle"
+                    <img
+                      alt="React"
+                      height="38"
+                      src="logo-small.png"
+                      srcSet="logo-small@2x.png 2x"
+                      width="38"
+                    />
+                    <span
+                      className="brandTxt"
+                    >
+                      Your Company
+                    </span>
+                  </a>
+                </Link>
+                <div
+                  className="banner"
                 >
-                  React
-                </h1>
-                <p
-                  className="bannerDesc"
-                >
-                  Complex web apps made easy
-                </p>
+                  <h1
+                    className="bannerTitle"
+                  >
+                    React
+                  </h1>
+                  <p
+                    className="bannerDesc"
+                  >
+                    Complex web apps made easy
+                  </p>
+                </div>
               </div>
-            </div>
-          </header>
-        </Header>
-      </ThemableWithStyles(Header)>
-      <div
-        className="child"
-      />
-      <ThemableWithStyles(Feedback)
-        css={Object {}}
-      >
-        <Feedback
+            </header>
+          </Header>
+        </ThemableWithStyles(Header)>
+        <div
+          className="child"
+        />
+        <ThemableWithStyles(Feedback)
           css={Object {}}
         >
-          <section
-            className="root"
+          <Feedback
+            css={Object {}}
           >
-            <div
-              className="container"
+            <section
+              className="root"
             >
-              <a
-                className="link"
-                href="https://gitter.im/kriasoft/react-starter-kit"
-                rel="noopener noreferrer"
-                target="_blank"
+              <div
+                className="container"
               >
-                Ask a question
-              </a>
-              <span
-                className="spacer"
-              >
-                |
-              </span>
-              <a
-                className="link"
-                href="https://github.com/kriasoft/react-starter-kit/issues/new"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Report an issue
-              </a>
-            </div>
-          </section>
-        </Feedback>
-      </ThemableWithStyles(Feedback)>
-      <ThemableWithStyles(Footer)
-        css={Object {}}
-      >
-        <Footer
+                <a
+                  className="link"
+                  href="https://gitter.im/kriasoft/react-starter-kit"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Ask a question
+                </a>
+                <span
+                  className="spacer"
+                >
+                  |
+                </span>
+                <a
+                  className="link"
+                  href="https://github.com/kriasoft/react-starter-kit/issues/new"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Report an issue
+                </a>
+              </div>
+            </section>
+          </Feedback>
+        </ThemableWithStyles(Feedback)>
+        <ThemableWithStyles(Footer)
           css={Object {}}
         >
-          <footer
-            className="root"
+          <Footer
+            css={Object {}}
           >
-            <div
-              className="container"
+            <footer
+              className="root"
             >
-              <span
-                className="text"
+              <div
+                className="container"
               >
-                © Your Company
-              </span>
-              <span
-                className="spacer"
-              >
-                ·
-              </span>
-              <Link
-                className="link"
-                onClick={null}
-                to="/"
-              >
-                <a
-                  className="link"
-                  href="/"
-                  onClick={[Function]}
+                <span
+                  className="text"
                 >
-                  Home
-                </a>
-              </Link>
-              <span
-                className="spacer"
-              >
-                ·
-              </span>
-              <Link
-                className="link"
-                onClick={null}
-                to="/privacy"
-              >
-                <a
-                  className="link"
-                  href="/privacy"
-                  onClick={[Function]}
+                  © Your Company
+                </span>
+                <span
+                  className="spacer"
                 >
-                  Privacy
-                </a>
-              </Link>
-              <span
-                className="spacer"
-              >
-                ·
-              </span>
-              <Link
-                className="link"
-                onClick={null}
-                to="/not-found"
-              >
-                <a
+                  ·
+                </span>
+                <Link
                   className="link"
-                  href="/not-found"
-                  onClick={[Function]}
+                  onClick={null}
+                  to="/"
                 >
-                  Not Found
-                </a>
-              </Link>
-            </div>
-          </footer>
-        </Footer>
-      </ThemableWithStyles(Footer)>
-    </Layout>
-  </ThemableWithStyles(Layout)>
+                  <a
+                    className="link"
+                    href="/"
+                    onClick={[Function]}
+                  >
+                    Home
+                  </a>
+                </Link>
+                <span
+                  className="spacer"
+                >
+                  ·
+                </span>
+                <Link
+                  className="link"
+                  onClick={null}
+                  to="/not-found"
+                >
+                  <a
+                    className="link"
+                    href="/not-found"
+                    onClick={[Function]}
+                  >
+                    Not Found
+                  </a>
+                </Link>
+              </div>
+            </footer>
+          </Footer>
+        </ThemableWithStyles(Footer)>
+      </Layout>
+    </ThemableWithStyles(Layout)>
+  </Provider>
 </App>
 `;
